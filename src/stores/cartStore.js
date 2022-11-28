@@ -26,6 +26,15 @@ export const useCartStore = defineStore({
 
 		},
 
+		removeFromCart(state) {
+			this.cartProducts[state].qty--
+			
+			if(this.cartProducts[state].qty === 0) {
+				delete this.cartProducts[state]
+			}
+
+		},
+
 		closeCartDrawer(){
 			this.cartDrawer = 'close';
 		},

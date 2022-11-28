@@ -30,7 +30,7 @@ const props = defineProps({
 });
 
 const descChar = computed(() => {
-    return props.desc.slice(0, 50) + '...';
+    return props.desc.slice(0, 100) + '...';
 })
 
 </script>
