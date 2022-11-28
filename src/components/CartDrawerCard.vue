@@ -10,9 +10,10 @@
                 <img class="mediaImg"  :src="item.image" />
             </div>
             <div class="cartBody">
-                <h2>{{ item.title }}</h2>
-                <h3> ${{ item.price }}</h3>
+                <h2 class="cartBody__title">{{ item.title }}</h2>
+                <h3 class="cartBody__price"> ${{ item.price }}</h3>
             </div>
+            <!-- <div @click="cartStore.addToCart(productID)">Qty</div> -->
         </div>
         <div class="cartTotal"><span>Total Amount:</span> <span>${{cartStore.cartTotal}}</span></div>
     </div>
@@ -88,6 +89,17 @@ h2,h3 {
 
 span {
     font-size: 18px;
+    font-weight: 700;
+}
+
+.cartBody__title {
+    border-bottom: 1px solid rgb(230, 229, 229);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.cartBody__price {
+    text-align: right;
     font-weight: 700;
 }
 </style>
