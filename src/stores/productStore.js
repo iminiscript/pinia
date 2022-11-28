@@ -8,13 +8,13 @@ export const useProductStore = defineStore({
 
 	actions: {
 		 async fetchProduct() {
-			
-			this.product = await fetch('https://fakestoreapi.com/products')
-            .then(res => res.json())
-            .then(json => this.products.push(json))
-
-			console.log(this.products[0])
+			const respons  = await fetch('https://fakestoreapi.com/products');
+			console.log(respons);
+			const res = await respons.json();
+			for (const iterator of res) {
+				iterator.id = iterator.id - 1 
+			}
+			this.products.push(res);
 		}
 	}
 })
-  

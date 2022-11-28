@@ -1,14 +1,20 @@
 <template>
-    <div class="cartDrawer"> 
+    <div class="cartDrawer" :class="cartStore.cartDrawer"> 
+        <div class="cartDrawer__head">
+            <h2 class="cartDrawer__title"> Cart</h2>
+            <div class="closeDrawer" @click="cartStore.closeCartDrawer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/></svg></div>
+        </div>
+      
         <div v-for="item in cartStore.cartData" class="cartProduct">
             <div class="cartMedia">
                 <img class="mediaImg"  :src="item.image" />
             </div>
             <div class="cartBody">
                 <h2>{{ item.title }}</h2>
-                <h3> {{ item.price }}</h3>
+                <h3> ${{ item.price }}</h3>
             </div>
         </div>
+        <div class="cartTotal"><span>Total Amount:</span> <span>${{cartStore.cartTotal}}</span></div>
     </div>
 </template>
 
@@ -20,16 +26,68 @@ const cartStore = useCartStore();
 </script>
 
 <style scoped>
-img {
-    max-width: 100%;
-    height: auto;
+.cartDrawer {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    background-color: aliceblue;
+    overflow-y: scroll;
+    box-shadow: 1px 2px 5px 2px;
 }
 
-.media {
-    text-align: center;
+.closeDrawer {
+    cursor: pointer;
+    z-index: 9;
+    text-align: right;
+    padding: 5px 10px;
+}
+.cartDrawer.open {
+    right: 0;
+    z-index: 1;
+}
+.cartDrawer.close {
+    right: -320px;
 }
 
-.mediaImg {
-    max-width: 150px;
+.cartDrawer__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.cartProduct {
+    display: grid;
+    grid-template-columns: 0.40fr 1fr;
+    grid-column-gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+.cartBody {
+    padding-left: 10px;
+}
+
+h2,h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cartDrawer__title {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.cartTotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+span {
+    font-size: 18px;
+    font-weight: 700;
 }
 </style>

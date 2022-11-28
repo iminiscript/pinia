@@ -13,11 +13,10 @@
 </script>
 
 <template>
-    <div class="header">
-        <CartCard />
-        <CartDrawerCard />
-
-    </div>
+     <CartDrawerCard />
+    
+    <CartCard />
+    
     <div class="productWrapper">
         <ProductCard v-for="product in productStore.products[0]"
         :key="product.id"
@@ -34,6 +33,8 @@
 
 <style scoped>
 .productWrapper {
+    max-width: 1280px;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;

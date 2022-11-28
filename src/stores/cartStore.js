@@ -6,25 +6,33 @@ import { useProductStore } from './productStore.js'
 export const useCartStore = defineStore({
 	id: 'cartStore',
 	state: () => ({
-		cartProducts: {
-			
-		}
+		cartProducts: {},
+		cartDrawer: 'close',
 	}),
 
 	actions: {
 		addToCart(state) {
-			//console.log(state);
-			//console.log(this.cartProducts);
-			
+	
 			if(this.cartProducts[state]) {
 				this.cartProducts[state].qty++
 			} else {
 				this.cartProducts[state] = {
-					productid: state - 1,
+					productid: state,
 					qty: 1
 				}
 			}
-		} 
+
+			this.cartDrawer = 'open';
+
+		},
+
+		closeCartDrawer(){
+			this.cartDrawer = 'close';
+		},
+
+		openCartDrawer() {
+			this.cartDrawer = 'open';
+		}
 	},
 
 	getters: {
@@ -57,10 +65,12 @@ export const useCartStore = defineStore({
 			//console.log(productsData);
 			
 			const totalPrice = Object.keys(this.cartProducts).reduce((acc, id) => {
-				console.log(Object.keys(this.cartProducts));
-				console.log(productsData.products[0][id]);
+				//console.log(Object.keys(this.cartProducts));
+				//console.log(productsData.products[0][id]);
 				return acc + productsData.products[0][id].price * this.cartProducts[id].qty }, 0);
-				console.log(totalPrice);
+				// console.log(totalPrice);
+				const roundOff = Math.round(totalPrice);
+				return	roundOff;
 			
 		},
 
@@ -77,7 +87,7 @@ export const useCartStore = defineStore({
 					image:productsData.products[0][productInCart.productid].image,
 					title:productsData.products[0][productInCart.productid].title,
 					qty:productInCart.qty,
-					price: productInCart.qty * productsData.products[0][productInCart.productid].price,
+					price: Math.round(productInCart.qty * productsData.products[0][productInCart.productid].price),
 
 				}
 
