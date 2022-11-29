@@ -29,9 +29,9 @@ const props = defineProps({
    productID: Number,
 });
 
-const descChar = computed(() => {
-    return props.desc.slice(0, 100) + '...';
-})
+// const descChar = computed(() => {
+//     return props.desc.slice(0, 100) + '...';
+// })
 
 </script>
 

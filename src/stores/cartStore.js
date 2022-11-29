@@ -75,8 +75,8 @@ export const useCartStore = defineStore({
 			
 			const totalPrice = Object.keys(this.cartProducts).reduce((acc, id) => {
 				//console.log(Object.keys(this.cartProducts));
-				//console.log(productsData.products[0][id]);
-				return acc + productsData.products[0][id].price * this.cartProducts[id].qty }, 0);
+				//console.log(productsData.products[id]);
+				return acc + productsData.products[id].price * this.cartProducts[id].qty }, 0);
 				// console.log(totalPrice);
 				const roundOff = Math.round(totalPrice);
 				return	roundOff;
@@ -93,10 +93,10 @@ export const useCartStore = defineStore({
 
 				const data = {
 					id: productInCart.productid,
-					image:productsData.products[0][productInCart.productid]?.image,
-					title:productsData.products[0][productInCart.productid]?.title,
+					image:productsData.products[productInCart.productid]?.image,
+					title:productsData.products[productInCart.productid]?.title,
 					qty:productInCart.qty,
-					price: Math.round(productInCart.qty * productsData.products[0][productInCart.productid]?.price),
+					price: Math.round(productInCart.qty * productsData.products[productInCart.productid]?.price),
 
 				}
 
