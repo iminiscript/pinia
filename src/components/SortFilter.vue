@@ -25,29 +25,31 @@ import { useProductStore } from '@/stores/productStore.js';
 
     const productList = productStore.products;
 
-    const sortDefault = computed(() => productStore.list);
+    const sortDefault = () => productStore.list;
 
-    const sortAscending = computed(() => {
+    const sortAscending = () => {
         return sortDefault.value.sort( ( a, b) => a.price > b.price ? 1 : -1);
-    });
+    };
 
-    const sortDescending = computed(() => {
+    const sortDescending = () => {
         return sortDefault.value.sort( ( a, b) => a.price < b.price ? 1 : -1);
-    })
+    };
 
     const test = computed(() => {
         return sortAscending.value;
     })
 
-    const setOrder = computed((val) => {
+    const setOrder = (val) => {
         order.val = val;
         orderRef.value = val;
         
         if(order.val === 'priceAsc') {
+            console.log('console.log(sortAscending.value)');
             console.log(sortAscending.value)
             return sortAscending.value;
 
         } else if (order.val === 'priceDesc') {
+            console.log('console.log(sortDescending.value)');
             console.log(sortDescending.value)
             return sortDescending.value;
         } 
@@ -57,7 +59,7 @@ import { useProductStore } from '@/stores/productStore.js';
         // const sortProduct = prod.sort( (a , b) => a.price > b.price ? 1 : -1);
         // console.log(sortProduct);
 
-    })
+    };
 
 
 

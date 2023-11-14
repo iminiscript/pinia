@@ -16,7 +16,7 @@ export const useProductStore = defineStore({
 			// 	iterator.id = iterator.id - 1 
 			// }
 			//this.products.push(res);
-
+			console.log(res);
 			this.ids = res.map(product => {
 				this.products[product.id] = product
 				return product.id
